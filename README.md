@@ -14,6 +14,11 @@ I've experimented with multiple ways to do this (and there are many). This seems
 
 ## Running
 
-`wget -q -O - https://raw.githubusercontent.com/drmikecrowe/linux-bootstrap/master/target/bootstrap-1.0.0.sh | bash`
+```
+wget -q https://raw.githubusercontent.com/drmikecrowe/linux-bootstrap/master/target/bootstrap-1.0.0.sh
+bash bootstrap-1.0.0.sh all
+```
 
 ## Demonstration
+
+![Peek 2020-04-02 20-32.gif](./resources/Peek 2020-04-02 20-32.gif)
