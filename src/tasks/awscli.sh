@@ -15,7 +15,7 @@ install_awscli() {
 
 ask_install_awscli() {
     is_awscli_installed && return
-    if ask "Install awscli?" Y; then 
+    if ask "Install awscli?"; then 
         type install_awscli | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi

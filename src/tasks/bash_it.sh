@@ -16,6 +16,28 @@ install_bash_it() {
         git clone --depth 1 https://github.com/Bash-it/bash-it.git .bash_it
     fi
 
+    # Install and update bashrc if necessary
+    set +e
+    if [ -d ~/.dotfiles/bash_it ]; then 
+        # This is my personal setup -- see ~/.dotfiles/bash_it/bash-it.sh
+        set -e
+        echo "Installing dotfiles too.  Won't modify .bashrc"
+        bash ~/.bash_it/install.sh --no-modify-config
+        set +e
+        grep -q 'dotfiles/bash_it' ~/.bashrc || echo "source ~/.dotfiles/bash_it/bash-it.sh" >> ~/.bashrc
+        set +x
+        source ~/.dotfiles/bash_it/bash-it.sh
+        set -x
+        set -e
+    else
+        set -e
+        bash ~/.bash_it/install.sh 
+        grep -E '^export|^source' ~/.bashrc > /tmp/setup.sh
+        source /tmp/setup.sh 
+    fi
+
+    set +x
+
     #$ bash-it-config.sh  -- a la https://github.com/Bash-it/bash-it/issues/1350#issuecomment-549949179
     # Bash-it Enabled-Component Backup
     # Date: Wed 18 Dec 2019 02:46:07 PM EST
@@ -50,14 +72,12 @@ install_bash_it() {
 
     #bash-it disable completion all
 
-    bash-it enable completion awless
     bash-it enable completion awscli
     bash-it enable completion bash-it
     bash-it enable completion docker
     bash-it enable completion docker-compose
     bash-it enable completion git
     bash-it enable completion git_flow
-    bash-it enable completion gulp
     bash-it enable completion npm
     bash-it enable completion pip
     bash-it enable completion pip3
@@ -65,11 +85,13 @@ install_bash_it() {
     bash-it enable completion system
     bash-it enable completion tmux
     bash-it enable completion vuejs
+
+    set -x    
 }
 
 ask_install_bash_it() {
     is_bash_it_installed && return
-    if ask "Install bash_it?" Y; then 
+    if ask "Install bash_it?"; then 
         type install_bash_it | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi

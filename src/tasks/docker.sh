@@ -17,7 +17,7 @@ install_docker() {
 
 ask_install_docker() {
     is_docker_installed && return
-    if ask "Install docker?" Y; then 
+    if ask "Install docker?"; then 
         type install_docker | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi

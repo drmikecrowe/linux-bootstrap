@@ -25,19 +25,16 @@ install_dotfiles() {
 
     ./.dotfiles/dotsync/bin/dotsync -L
 
-    if [ -d $HOME/.bash_it]; then 
+    if [ -d $HOME/.bash_it ]; then 
         set +e
-        grep -q 'dotfiles/bash_it' ~/.bashrc
-        if [ "$?" == "1" ]; then
-            echo "source ~/.dotfiles/bash_it/bash-it.sh" >> ~/.bashrc
-        fi
-        set +x 
+        grep -q 'dotfiles/bash_it' ~/.bashrc && echo "source ~/.dotfiles/bash_it/bash-it.sh" >> ~/.bashrc
+        set -e
     fi 
 }
 
 ask_install_dotfiles() {
     is_dotfiles_installed && return
-    if ask "Install dotfiles?" Y; then 
+    if ask "Install dotfiles?"; then 
         type install_dotfiles | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi

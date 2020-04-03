@@ -19,7 +19,7 @@ install_google-chrome() {
 
 ask_install_google-chrome() {
     is_google-chrome_installed && return
-    if ask "Install google-chrome?" Y; then 
+    if ask "Install google-chrome?"; then 
         type install_google-chrome | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi

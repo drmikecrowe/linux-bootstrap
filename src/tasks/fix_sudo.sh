@@ -23,7 +23,7 @@ EOF
 
 ask_install_fix_sudo() {
     is_fix_sudo_installed && return
-    if ask "Fix sudo so user so password isn't required?" Y; then 
+    if ask "Fix sudo so user so password isn't required?"; then 
         type install_fix_sudo | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi

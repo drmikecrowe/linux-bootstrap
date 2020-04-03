@@ -16,7 +16,7 @@ install_copyq() {
 
 ask_install_copyq() {
     is_copyq_installed && return
-    if ask "Install copyq?" Y; then 
+    if ask "Install copyq?"; then 
         type install_copyq | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi

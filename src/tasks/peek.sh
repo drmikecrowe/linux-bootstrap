@@ -16,7 +16,7 @@ install_peek() {
 
 ask_install_peek() {
     is_peek_installed && return
-    if ask "Install peek?" Y; then 
+    if ask "Install peek?"; then 
         type install_peek | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi

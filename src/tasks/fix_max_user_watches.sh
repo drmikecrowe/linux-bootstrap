@@ -20,7 +20,7 @@ EOF
 
 ask_install_fix_max_user_watches() {
     is_fix_max_user_watches_installed && return
-    if ask "Fix max_user_watches by increasing to 524288?" Y; then 
+    if ask "Fix max_user_watches by increasing to 524288?"; then 
         type install_fix_max_user_watches | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi

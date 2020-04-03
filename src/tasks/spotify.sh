@@ -15,7 +15,7 @@ install_spotify() {
 
 ask_install_spotify() {
     is_spotify_installed && return
-    if ask "Install spotify?" Y; then 
+    if ask "Install spotify?"; then 
         type install_spotify | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi

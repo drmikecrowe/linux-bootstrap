@@ -67,6 +67,9 @@ function get_download_url {
 
 function setup {
     [ "$RUNFILE" != "" ] && return 
+    install_base_packages
+    echo " "
+    
     export RUNFILE="$HOME/_todo.sh"
 
     echo "#!/usr/bin/env bash" >$RUNFILE

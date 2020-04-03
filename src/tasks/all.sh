@@ -7,6 +7,9 @@ install_base_packages
 
 setup
 
+echo " "
+echo " "
+
 # Start Commands
 if [ -n "$DISPLAY" ]; then
   $0 default_gui_packages
@@ -31,6 +34,8 @@ $0 awscli
 $0 etckeeper
 $0 fix_max_user_watches
 $0 fix_sudo
+$0 goenv
+$0 goenv2
 # End Commands
 
 run_todo

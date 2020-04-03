@@ -12,7 +12,7 @@ install_default_gui_packages() {
 
 ask_install_default_gui_packages() {
     is_default_gui_packages_installed && return
-    if ask "Install default GUI packages?" Y; then 
+    if ask "Install default GUI packages?"; then 
         type install_default_gui_packages | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi

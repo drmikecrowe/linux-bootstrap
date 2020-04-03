@@ -13,3 +13,7 @@ When you first login to a new linux box, you have many default packages you typi
 I've experimented with multiple ways to do this (and there are many). This seems to be the easiest way to maintain and expand as your preferences change.
 
 ## Running
+
+`wget -q -O - https://raw.githubusercontent.com/drmikecrowe/linux-bootstrap/master/target/bootstrap-1.0.0.sh | bash`
+
+## Demonstration

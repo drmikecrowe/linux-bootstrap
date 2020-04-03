@@ -15,7 +15,7 @@ install_terraform() {
 
 ask_install_terraform() {
     is_terraform_installed && return
-    if ask "Install terraform?" Y; then 
+    if ask "Install terraform?"; then 
         type install_terraform | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi

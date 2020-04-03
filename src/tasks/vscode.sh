@@ -15,7 +15,7 @@ install_vscode() {
 
 ask_install_vscode() {
     is_vscode_installed && return
-    if ask "Install vscode?" Y; then 
+    if ask "Install vscode?"; then 
         type install_vscode | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi

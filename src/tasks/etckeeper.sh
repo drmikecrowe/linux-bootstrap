@@ -15,13 +15,15 @@ install_etckeeper() {
     sudo sed -i 's/^VCS=/#VCS/' /etc/etckeeper/etckeeper.conf
     sudo sed -i 's/^#?VCS=.*git.*/VCS="git"/' /etc/etckeeper/etckeeper.conf
     cd /etc
+    set +e
     sudo etckeeper init
+    set -e
     sudo etckeeper commit "Initial checkin"
 }
 
 ask_install_etckeeper() {
     is_etckeeper_installed && return
-    if ask "Install etckeeper?" Y; then 
+    if ask "Install etckeeper?"; then 
         type install_etckeeper | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi

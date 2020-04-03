@@ -15,7 +15,7 @@ install_opera() {
 
 ask_install_opera() {
     is_opera_installed && return
-    if ask "Install opera?" Y; then 
+    if ask "Install opera?"; then 
         type install_opera | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi

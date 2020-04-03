@@ -18,7 +18,7 @@ install_wavebox() {
 
 ask_install_wavebox() {
     is_wavebox_installed && return
-    if ask "Install wavebox?" Y; then 
+    if ask "Install wavebox?"; then 
         type install_wavebox | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi

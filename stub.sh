@@ -16,10 +16,13 @@ NEW="src/tasks/$TASK.sh"
 
 cat <<EOF >$NEW
 #!/usr/bin/env bash
+# <help> Install ${TASK}</help>
+
+setup
 
 is_${TASK}_installed() {
     # If you return true/1 here then it is already installed
-    # [ "\$(which xxx)" != "" ]
+    # [ "\$(which ${TASK})" != "" ]
     # [ -d /some/diraectory ]
     false
 }
@@ -31,7 +34,7 @@ install_${TASK}() {
 
 ask_install_${TASK}() {
     is_${TASK}_installed && return
-    if ask "Install ${TASK}?" Y; then 
+    if ask "Install ${TASK}?"; then 
         type install_${TASK} | sed '1,3d;\$d' | sed 's/^\s*//g' >> \$RUNFILE
         echo " " >> \$RUNFILE
     fi
@@ -39,6 +42,7 @@ ask_install_${TASK}() {
 
 ask_install_${TASK}
 
+[ "\$ALL" == "" ] && run_todo
 EOF
 
 # Add it to 'all.sh' 

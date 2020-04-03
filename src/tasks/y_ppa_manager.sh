@@ -16,7 +16,7 @@ install_y_ppa_manager() {
 
 ask_install_y_ppa_manager() {
     is_y_ppa_manager_installed && return
-    if ask "Install y_ppa_manager?" Y; then 
+    if ask "Install y_ppa_manager?"; then 
         type install_y_ppa_manager | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi

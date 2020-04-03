@@ -16,7 +16,7 @@ install_touchpad_indicator() {
 
 ask_install_touchpad_indicator() {
     is_touchpad_indicator_installed && return
-    if ask "Install touchpad-indicator?" Y; then 
+    if ask "Install touchpad-indicator?"; then 
         type install_touchpad_indicator | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
         echo " " >> $RUNFILE
     fi
