@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# <help> Install goenv</help>
+# <help>Install goenv</help>
 
 setup
 

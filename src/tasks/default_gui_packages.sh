@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# <help>Install default gui pages like meld, glogg etc.</help>
 
 is_default_gui_packages_installed() {
     # If you return true/1 here then it is already installed

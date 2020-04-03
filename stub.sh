@@ -16,7 +16,7 @@ NEW="src/tasks/$TASK.sh"
 
 cat <<EOF >$NEW
 #!/usr/bin/env bash
-# <help> Install ${TASK}</help>
+# <help>Install ${TASK}</help>
 
 setup
 

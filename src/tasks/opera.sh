@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# <help> Install opera</help>
+# <help>Install opera</help>
 
 setup
 
