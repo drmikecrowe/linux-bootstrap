@@ -28,14 +28,14 @@ fi
 $0 dotfiles
 $0 bash_it
 $0 nodenv
-$0 docker
+$0 goenv
 $0 pyenv
+$0 xonsh
+$0 docker
 $0 awscli
 $0 etckeeper
 $0 fix_max_user_watches
 $0 fix_sudo
-$0 goenv
-$0 goenv2
 # End Commands
 
 run_todo
