@@ -21,4 +21,4 @@ bash bootstrap-1.0.0.sh all
 
 ## Demonstration
 
-![Peek 2020-04-02 20-32.gif](/resources/Peek 2020-04-02 20-32.gif)
+![Peek 2020-04-02 20-32.gif](https://github.com/drmikecrowe/linux-bootstrap/blob/master/resources/Peek%202020-04-02%2020-32.gif)
