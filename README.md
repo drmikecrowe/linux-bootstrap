@@ -50,7 +50,7 @@ Whenever I find a new GUI package that I always want on any system, I add it to 
 Download the main script and make it executable:
 
 ```
-wget -q https://raw.githubusercontent.com/drmikecrowe/linux-bootstrap/master/target/bootstrap-1.0.0.sh
+wget -q https://raw.githubusercontent.com/drmikecrowe/linux-bootstrap/master/target/bootstrap.sh
 chmod +x bootstrap-1.0.0.sh
 ./bootstrap-1.0.0.sh all
 ```
