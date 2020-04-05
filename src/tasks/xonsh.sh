@@ -10,7 +10,8 @@ is_xonsh_installed() {
 
 install_xonsh() {
     echo "Installing xonsh now"
-    pip3 install xonsh
+    pip install xonsh
+    chsh -s $(which xonsh) $USER
 }
 
 ask_install_xonsh() {
