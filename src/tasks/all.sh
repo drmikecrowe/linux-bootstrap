@@ -3,8 +3,6 @@
 
 export ALL=1
 
-install_base_packages
-
 setup
 
 echo " "
