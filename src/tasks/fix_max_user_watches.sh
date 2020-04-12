@@ -5,7 +5,7 @@ setup
     
 is_fix_max_user_watches_installed() {
     # If you return true/1 here then it is already installed
-    [ "$(sudo augtool match /files/etc/sysctl.conf/fs.inotify.max_user_watches)" != "" ]
+    [[ "$(sudo augtool match /files/etc/sysctl.conf/fs.inotify.max_user_watches)" =~ "524288" ]]
 }
 
 install_fix_max_user_watches() {
