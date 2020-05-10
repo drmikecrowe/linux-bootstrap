@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # <help>Install y_ppa_manager</help>
 
-setup
+setup $1
     
 is_y_ppa_manager_installed() {
     # If you return true/1 here then it is already installed

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # <help>Fix sudo so user so password isn't required?</help>
 
-setup
+setup $1
     
 is_fix_sudo_installed() {
     [ "$(sudo augtool match /files/etc/sudoers/*/user $USER)" != "" ]

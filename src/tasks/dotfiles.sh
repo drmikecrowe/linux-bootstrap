@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # <help>Install dotfiles</help>
 
-setup
+setup $1
     
 is_dotfiles_installed() {
     # If you return true/1 here then it is already installed

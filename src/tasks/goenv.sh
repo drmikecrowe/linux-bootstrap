@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # <help>Install goenv</help>
 
-setup
+setup $1
 
 is_goenv_installed() {
     # If you return true/1 here then it is already installed

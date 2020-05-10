@@ -18,6 +18,10 @@ ask() {
     # https://djm.me/ask
     local prompt default reply
 
+    if [ "$FORCE" == "1" ]; then 
+        return 0
+    fi
+
     if [ "${2:-}" = "Y" ]; then
         prompt="Y/n"
         default=Y
@@ -53,7 +57,7 @@ ask() {
 
 # ------------- Utility Functions ------------- #
 
-function install_deb_from_url {
+install_deb_from_url() {
     FILE="$2"
     URL="$1/$FILE"
     wget $URL -O $FILE
@@ -61,12 +65,18 @@ function install_deb_from_url {
     rm $FILE
 }
 
-function get_download_url {
-    wget -q -nv -O- https://api.github.com/repos/$1/releases/latest 2>/dev/null |	jq -r '.assets[] | select(.browser_download_url | contains("linux-amd64")) | .browser_download_url'
+get_download_url() {
+    wget -q -nv -O- https://api.github.com/repos/$1/releases/latest 2>/dev/null |	jq -r '.assets[] | select(.browser_download_url | contains("linux-amd64|\.deb")) | .browser_download_url'
 }
 
-function setup {
+setup() {
     [ "$RUNFILE" != "" ] && return 
+
+    if [ "$1" == "-y" ]; then 
+        FORCE=1
+        shift 
+    fi
+
     install_base_packages
     echo " "
     
@@ -78,7 +88,7 @@ function setup {
     echo 'echo "Staring bootstrap"' >>$RUNFILE
 }
 
-function run_todo {
+run_todo() {
     # Run the bootstrapped code
     LINES=$(cat $RUNFILE | wc -l)
     if [ $LINES -gt 4 ]; then 

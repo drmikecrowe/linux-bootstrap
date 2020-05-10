@@ -3,7 +3,7 @@
 
 export ALL=1
 
-setup
+setup $1
 
 echo " "
 echo " "
@@ -34,6 +34,7 @@ $0 awscli
 $0 etckeeper
 $0 fix_max_user_watches
 $0 fix_sudo
+$0 terminus
 # End Commands
 
 run_todo

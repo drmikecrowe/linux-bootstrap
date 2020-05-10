@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # <help>Install docker</help>
 
-setup
+setup $1
     
 is_docker_installed() {
     # If you return true/1 here then it is already installed

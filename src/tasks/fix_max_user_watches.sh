@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # <help>Fix max_user_watches by increasing to 524288?</help>
 
-setup
+setup $1
     
 is_fix_max_user_watches_installed() {
     # If you return true/1 here then it is already installed
