@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # <help>Install xonsh</help>
 
-setup
+setup $1
 
 is_xonsh_installed() {
     # If you return true/1 here then it is already installed
@@ -10,7 +10,9 @@ is_xonsh_installed() {
 
 install_xonsh() {
     echo "Installing xonsh now"
-    pip install xonsh
+    pipx install xonsh
+    pipx inject xonsh xontrib-autojump xontrib-ssh_agent xonsh-apt-tabcomplete xonsh-docker-tabcomplete xonsh-direnv xontrib-powerline2
+    grep -q xonsh /etc/shells || echo "$(which xonsh)" | sudo tee -a /etc/shells > /dev/null
     sudo chsh -s $(which xonsh) $USER
 }
 
