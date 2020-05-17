@@ -35,6 +35,7 @@ $0 etckeeper
 $0 fix_max_user_watches
 $0 fix_sudo
 $0 terminus
+$0 boot_repair
 # End Commands
 
 run_todo

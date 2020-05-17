@@ -21,6 +21,6 @@ function install_base_packages() {
     set -e
 
     if [ "$(which pip)" == "" ]; then 
-        sudo apt install -y python3-pip python3-venv
+        sudo apt install -y python3-pip python3-venv powerline-shell
     fi
 }
