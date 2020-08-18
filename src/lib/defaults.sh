@@ -3,11 +3,11 @@
 
 function install_base_packages() {
     # NOTE: Update this with the latest tool added to the list
-    if [ "$(which augtool)" == "" ]; then
+    if [ "$(which fzf)" == "" ]; then
         sudo apt update
         sudo apt install -y apt-transport-https curl autojump bash-completion build-essential ca-certificates cifs-utils comprez \
         direnv dselect gawk gdebi git jq mc mysql-client net-tools p7zip-full sshfs tmux tmux-plugin-manager vim-nox virtualenv \
-        vpnc-scripts yadm aptitude fonts-powerline libffi-dev augeas-tools
+        vpnc-scripts yadm aptitude fonts-powerline libffi-dev augeas-tools fzf
     fi
 
     set +e
@@ -23,4 +23,9 @@ function install_base_packages() {
     if [ "$(which pip)" == "" ]; then 
         sudo apt install -y python3-pip python3-venv powerline-shell
     fi
+
+    if [ ! -d ~/.dotbare ]; then 
+        git clone https://github.com/kazhala/dotbare.git ~/.dotbare
+        echo "source ~/.dotbare/dotbare.plugin.bash" >> ~/.bashrc
+    fi 
 }
