@@ -58,15 +58,15 @@ ask() {
 # ------------- Utility Functions ------------- #
 
 install_deb_from_url() {
-    FILE="$2"
-    URL="$1/$FILE"
+    URL="$1"
+    FILE="/tmp/$(basename $URL)"
     wget $URL -O $FILE
-    sudo gdebi $FILE
+    sudo gdebi -n $FILE
     rm $FILE
 }
 
 get_download_url() {
-    wget -q -nv -O- https://api.github.com/repos/$1/releases/latest 2>/dev/null |	jq -r '.assets[] | select(.browser_download_url | contains("linux-amd64|\.deb")) | .browser_download_url'
+    wget -q -nv -O- https://api.github.com/repos/$1/releases/latest 2>/dev/null |	jq -r '.assets[] | select(.browser_download_url | contains("amd64.deb")) | .browser_download_url'
 }
 
 setup() {

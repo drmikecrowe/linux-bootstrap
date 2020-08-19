@@ -7,7 +7,7 @@ function install_base_packages() {
         sudo apt update
         sudo apt install -y apt-transport-https curl autojump bash-completion build-essential ca-certificates cifs-utils comprez \
         direnv dselect gawk gdebi git jq mc mysql-client net-tools p7zip-full sshfs tmux tmux-plugin-manager vim-nox virtualenv \
-        vpnc-scripts yadm aptitude fonts-powerline libffi-dev augeas-tools fzf
+        vpnc-scripts yadm aptitude fonts-powerline libffi-dev augeas-tools tree bat ripgrep fzf
     fi
 
     set +e
@@ -28,4 +28,10 @@ function install_base_packages() {
         git clone https://github.com/kazhala/dotbare.git ~/.dotbare
         echo "source ~/.dotbare/dotbare.plugin.bash" >> ~/.bashrc
     fi 
+
+    # If gdebi gives you problems:  https://forums.solydxk.com/viewtopic.php?t=7531
+    if [ "$(which pip)" == "" ]; then 
+        URL=$(get_download_url dandavison/delta)
+        install_deb_from_url $URL /tmp/delta.deb
+    fi
 }
