@@ -51,20 +51,20 @@ Download the main script and make it executable:
 
 ```
 wget -q https://raw.githubusercontent.com/drmikecrowe/linux-bootstrap/master/target/bootstrap.sh
-chmod +x bootstrap-1.0.0.sh
-./bootstrap-1.0.0.sh all
+chmod +x bootstrap.sh
+./bootstrap.sh all
 ```
 
 You can see all the options as follows:
 
 ```
-./bootstrap-1.0.0.sh
+./bootstrap.sh
 ```
 
 You can also install a single item like this:
 
 ```
-./bootstrap-1.0.0.sh goenv
+./bootstrap.sh goenv
 ```
 
 ## Demonstration
@@ -113,4 +113,4 @@ type install_goenv | sed '1,3d;$d' | sed 's/^\s*//g' >> $RUNFILE
 ```
 
 - This line essentially prints the install function, then I use `sed` to remove the function declarations and leading spaces
-- I like using the `cat <<EOF >>somefile` when writing lots of lines. Unfortunately, [Bashing](https://github.com/xsc/bashing) indents the code when it builds the `target/bootstrap-1.0.0.sh`, so my `./build.sh` makes sure that any `EOF` on a line by itself has no leading spaces
+- I like using the `cat <<EOF >>somefile` when writing lots of lines. Unfortunately, [Bashing](https://github.com/xsc/bashing) indents the code when it builds the `target/bootstrap.sh`, so my `./build.sh` makes sure that any `EOF` on a line by itself has no leading spaces
