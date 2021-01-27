@@ -23,12 +23,16 @@ if [ -n "$DISPLAY" ]; then
   $0 y_ppa_manager
 fi
 
-$0 dotfiles
 $0 bash_it
+$0 dotbare
+$0 baredotfiles
+$0 basher
+$0 bashew
+$0 delta
 $0 nodenv
 $0 goenv
 $0 pyenv
-$0 xonsh
+# $0 xonsh
 $0 docker
 $0 awscli
 $0 etckeeper
@@ -36,7 +40,7 @@ $0 fix_max_user_watches
 $0 fix_sudo
 $0 terminus
 $0 boot_repair
-$0 dotbare
+$0 apt_search
 # End Commands
 
 run_todo

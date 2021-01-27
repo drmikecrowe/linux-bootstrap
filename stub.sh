@@ -23,7 +23,7 @@ setup
 is_${TASK}_installed() {
     # If you return true/1 here then it is already installed
     # [ "\$(which ${TASK})" != "" ]
-    # [ -d /some/diraectory ]
+    # [ -d /some/directory ]
     false
 }
 
@@ -46,7 +46,8 @@ ask_install_${TASK}
 EOF
 
 # Add it to 'all.sh' 
-grep -q "\$0 $1" src/tasks/all.sh 
+COMMAND=$(echo "$1" | sed 's/-/_/g')
+grep -q "\$0 $COMMAND" src/tasks/all.sh 
 if [ "$?" != "0" ]; then 
-  sed -i "/^# End Commands/i \$0 $1" src/tasks/all.sh
+  sed -i "/^# End Commands/i \$0 $COMMAND" src/tasks/all.sh
 fi 

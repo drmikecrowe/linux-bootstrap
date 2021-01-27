@@ -7,10 +7,19 @@ function install_base_packages() {
         sudo apt update
         sudo apt install -y apt-transport-https curl autojump bash-completion build-essential ca-certificates cifs-utils comprez \
         direnv dselect gawk gdebi git jq mc mysql-client net-tools p7zip-full sshfs tmux tmux-plugin-manager vim-nox virtualenv \
-        vpnc-scripts yadm aptitude fonts-powerline libffi-dev augeas-tools tree bat ripgrep fzf
+        htop vpnc-scripts yadm aptitude fonts-powerline libffi-dev augeas-tools tree bat ripgrep gnome-tweaks fzf
+        set +e
+        sudo apt install libssl-dev libbz2-dev libreadline-dev
     fi
 
     set +e
+    if [ "$(which python)" == "" ]; then 
+        if [ "$(which python3)" != "" ]; then 
+            sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 10
+            sudo update-alternatives --set python /usr/bin/python3
+        fi
+    fi
+
     python --version 2>&1 | grep -q 'Python 2'
     if [ "$?" == "0" ]; then 
         set -e
@@ -21,17 +30,17 @@ function install_base_packages() {
     set -e
 
     if [ "$(which pip)" == "" ]; then 
-        sudo apt install -y python3-pip python3-venv powerline-shell
+        sudo apt install -y python3-pip python3-venv
     fi
 
-    if [ ! -d ~/.dotbare ]; then 
-        git clone https://github.com/kazhala/dotbare.git ~/.dotbare
-        echo "source ~/.dotbare/dotbare.plugin.bash" >> ~/.bashrc
-    fi 
-
-    # If gdebi gives you problems:  https://forums.solydxk.com/viewtopic.php?t=7531
-    if [ "$(which pip)" == "" ]; then 
-        URL=$(get_download_url dandavison/delta)
-        install_deb_from_url $URL /tmp/delta.deb
+    if [ "$(which bin)" == "" ]; then 
+        install_github_release marcosnils/bin
+        mkdir -p ~/.bin
+        cat <<EOF > ~/.bin/config.json
+{
+    "default_path": "$HOME/.local/bin",
+    "bins": {}
+}
+EOF
     fi
 }

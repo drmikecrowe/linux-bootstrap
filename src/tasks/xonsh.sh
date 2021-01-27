@@ -13,7 +13,7 @@ install_xonsh() {
     pipx install xonsh
     pipx inject xonsh xontrib-autojump xontrib-ssh_agent xonsh-apt-tabcomplete xonsh-docker-tabcomplete xonsh-direnv xontrib-powerline2
     grep -q xonsh /etc/shells || echo "$(which xonsh)" | sudo tee -a /etc/shells > /dev/null
-    sudo chsh -s $(which xonsh) $USER
+    chsh -s $(which xonsh)
 }
 
 ask_install_xonsh() {

@@ -57,16 +57,34 @@ ask() {
 
 # ------------- Utility Functions ------------- #
 
-install_deb_from_url() {
-    URL="$1"
-    FILE="/tmp/$(basename $URL)"
-    wget $URL -O $FILE
-    sudo gdebi -n $FILE
-    rm $FILE
-}
-
-get_download_url() {
-    wget -q -nv -O- https://api.github.com/repos/$1/releases/latest 2>/dev/null |	jq -r '.assets[] | select(.browser_download_url | contains("amd64.deb")) | .browser_download_url'
+install_github_release() {
+    set -x
+    if [ ! -z $(which bin) ]; then 
+        bin install github.com/$1
+    else
+        set +e
+        OUT=$(mktemp)
+        wget -qnv -O- https://api.github.com/repos/$1/releases/latest 2>/dev/null > $OUT
+        URL="$(jq -r '.assets[] | select(.browser_download_url | contains("amd64.deb")) | .browser_download_url' $OUT)" 
+        if [ "$URL" != "" ]; then 
+            set -e
+            wget $URL -O $OUT.deb
+            sudo gdebi -n $OUT.deb 
+        else 
+            URL="$(jq -r '.assets[] | select(.browser_download_url | match("linux.*x86_64";"i")) | .browser_download_url' $OUT)" 
+            if [ "$URL" != "" ]; then 
+            set -e
+                BASE="$(basename $URL)"
+                BIN="$(echo $BASE | sed 's/_.*//')"
+                wget -qnv $URL -O $OUT
+                mv $OUT ~/.local/bin/$BIN 
+                chmod +x ~/.local/bin/$BIN
+            fi
+        fi
+        rm -f $OUT*
+        set -e
+    fi
+    set +x
 }
 
 setup() {
