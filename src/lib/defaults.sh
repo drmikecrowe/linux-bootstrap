@@ -15,7 +15,7 @@ function install_base_packages() {
                 direnv dselect gawk gdebi git jq mc mysql-client net-tools p7zip-full sshfs tmux tmux-plugin-manager vim-nox virtualenv \
                 htop vpnc-scripts yadm aptitude fonts-powerline libffi-dev augeas-tools tree bat ripgrep gnome-tweaks fzf
                 set +e
-                sudo apt install libssl-dev libbz2-dev libreadline-dev
+                sudo apt install libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
             fi
 
             set +e

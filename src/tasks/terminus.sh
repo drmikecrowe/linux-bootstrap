@@ -4,12 +4,23 @@
 setup $1
 
 is_terminus_installed() {
-    [ "$(which terminus)" != "" ]
+    if [ "$(which terminus)" != "" ]; then 
+        CURRENT=$(dpkg -s terminus  | grep '^Version:' | awk '{ print $2 }')
+        LATEST=$(curl --silent "https://api.github.com/repos/Eugeny/terminus/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
+        VERSION=${LATEST:1:255}
+        [ "$CURRENT" == "$VERSION" ]
+    fi
 }
 
 install_terminus() {
     echo "Installing terminus now"
-    wget -qO- "https://mc-installer.herokuapp.com/Eugeny/terminus!?type=script" | bash
+    LATEST=$(curl --silent "https://api.github.com/repos/Eugeny/terminus/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
+    VERSION=${LATEST:1:255}
+    DOWNLOAD="https://github.com/Eugeny/terminus/releases/download/$LATEST/terminus-$VERSION-linux.deb"
+    DEB=$(basename $DOWNLOAD)
+    rm -f /tmp/$DEB*
+    wget -P /tmp $DOWNLOAD
+    sudo gdebi -n /tmp/$DEB
 }
 
 ask_install_terminus() {

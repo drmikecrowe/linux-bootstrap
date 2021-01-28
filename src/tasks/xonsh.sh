@@ -11,7 +11,7 @@ is_xonsh_installed() {
 install_xonsh() {
     echo "Installing xonsh now"
     pipx install xonsh
-    pipx inject xonsh xontrib-autojump xontrib-ssh_agent xonsh-apt-tabcomplete xonsh-docker-tabcomplete xonsh-direnv xontrib-powerline2
+    pipx inject xonsh xontrib-ssh_agent xonsh-apt-tabcomplete xonsh-docker-tabcomplete xonsh-direnv xontrib-powerline2
     grep -q xonsh /etc/shells || echo "$(which xonsh)" | sudo tee -a /etc/shells > /dev/null
     chsh -s $(which xonsh)
 }
