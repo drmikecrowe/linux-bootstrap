@@ -25,7 +25,6 @@ fi
 
 $0 bash_it
 $0 dotbare
-$0 baredotfiles
 $0 basher
 $0 bashew
 $0 delta
@@ -41,6 +40,7 @@ $0 fix_sudo
 $0 terminus
 $0 boot_repair
 $0 apt_search
+$0 brave
 # End Commands
 
 run_todo

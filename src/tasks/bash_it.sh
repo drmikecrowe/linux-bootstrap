@@ -5,8 +5,7 @@ setup $1
      
 is_bash_it_installed() {
     # If you return true/1 here then it is already installed
-    # [ -d ~/.bash_it/ ]
-    false
+    [ -d ~/.bash_it/ ]
 }
 
 install_bash_it() {
@@ -14,7 +13,7 @@ install_bash_it() {
     cd "$HOME"
     
     if [ ! -d ~/.bash_it ]; then
-        git clone --depth 1 https://github.com/Bash-it/bash-it.git .bash_it
+        git clone --depth 1 https://github.com/drmikecrowe/bash-it.git .bash_it
     fi
 
     # Install and update bashrc if necessary

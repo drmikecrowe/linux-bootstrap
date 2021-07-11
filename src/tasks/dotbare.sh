@@ -4,7 +4,7 @@
 setup
 
 is_dotbare_installed() {
-    [ "$(which ~/.dotbare)" != "" ]
+    [ -d ~/.dotbare ]
 }
 
 install_dotbare() {
