@@ -11,7 +11,7 @@ is_wavebox_installed() {
 install_wavebox() {
     echo "Installing wavebox now"
     sudo wget -qO - https://wavebox.io/dl/client/repo/archive.key | sudo apt-key add -
-    echo "deb https://wavebox.io/dl/client/repo/ x86_64/" | sudo tee /etc/apt/sources.list.d/wavebox.list
+    echo "deb [arch=amd64] https://download.wavebox.app/stable/linux/deb/ amd64/" | sudo tee /etc/apt/sources.list.d/wavebox.list
     sudo apt update
     sudo apt install -y wavebox ttf-mscorefonts-installer
 }

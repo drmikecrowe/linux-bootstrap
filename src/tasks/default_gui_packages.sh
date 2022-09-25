@@ -3,13 +3,14 @@
 
 is_default_gui_packages_installed() {
     # If you return true/1 here then it is already installed
-    [ "$(which kupfer)" != "" ] 
+    [ "$(which glogg)" != "" ] 
 }
 
 install_default_gui_packages() {
     echo "Installing default_gui_packages now"
     sudo apt install -y gtk2-engines-murrine gtk2-engines-pixbuf fonts-roboto ninja-build meson sassc glogg meld synaptic menulibre kupfer \
-        remmina vim-gtk3 fonts-firacode
+        remmina vim-gtk3 fonts-firacode zulucrypt-gui
+    sudo snap install authy
 }
 
 ask_install_default_gui_packages() {

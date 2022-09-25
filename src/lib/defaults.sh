@@ -8,6 +8,15 @@ function install_base_packages() {
             ;;
         darwin*) 
             ;;
+        linux-gnu*)
+            if [ "$(which fzf)" == "" ]; then
+                sudo apt update
+                sudo apt install -y apt-transport-https curl autojump bash-completion build-essential ca-certificates cifs-utils comprez direnv gawk gdebi jq mc vim-nox augeas-tools fzf
+                set +e
+                sudo apt install libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
+            fi
+            set -e
+            ;;            
         linux*)
             if [ "$(which fzf)" == "" ]; then
                 sudo apt update

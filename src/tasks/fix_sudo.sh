@@ -4,21 +4,11 @@
 setup $1
     
 is_fix_sudo_installed() {
-    [ "$(sudo augtool match /files/etc/sudoers/*/user $USER)" != "" ]
+    [ ! -f $FILE ]
 }
 
 install_fix_sudo() {
-    echo "Adding $USER to sudoers with no password\n"
-    sudo usermod -aG sudo $USER
-    cat <<EOF >/tmp/sudoers.aug
-set /files/etc/sudoers/spec[last()]/user "$USER"
-set /files/etc/sudoers/spec[last()]/host_group/host "ALL"
-set /files/etc/sudoers/spec[last()]/host_group/command "ALL"
-set /files/etc/sudoers/spec[last()]/host_group/command/runas_user "ALL"
-set /files/etc/sudoers/spec[last()]/host_group/command/tag "NOPASSWD"
-save
-EOF
-    sudo augtool -f /tmp/sudoers.aug
+    echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/dont-prompt-$USER-for-sudo-password
 }
 
 ask_install_fix_sudo() {

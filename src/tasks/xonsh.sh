@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # <help>Install xonsh</help>
 
+BIN="~/bin/xonsh-x86_64.AppImage"
+
 setup $1
 
 is_xonsh_installed() {
@@ -10,8 +12,9 @@ is_xonsh_installed() {
 
 install_xonsh() {
     echo "Installing xonsh now"
-    pipx install xonsh
-    pipx inject xonsh xontrib-ssh_agent xonsh-apt-tabcomplete xonsh-docker-tabcomplete xonsh-direnv xontrib-powerline2
+    wget -qnv -O- https://github.com/xonsh/xonsh/releases/latest/download/xonsh-x86_64.AppImage > $BIN
+    chmod +x $BIN  
+    ln -s $BIN ~/bin/xonsh
     grep -q xonsh /etc/shells || echo "$(which xonsh)" | sudo tee -a /etc/shells > /dev/null
     chsh -s $(which xonsh)
 }

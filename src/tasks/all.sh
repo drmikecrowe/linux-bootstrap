@@ -41,6 +41,7 @@ $0 terminus
 $0 boot_repair
 $0 apt_search
 $0 brave
+$0 flameshot
 # End Commands
 
 run_todo

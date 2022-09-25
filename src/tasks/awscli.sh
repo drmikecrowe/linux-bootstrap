@@ -10,7 +10,7 @@ is_awscli_installed() {
 
 install_awscli() {
     echo "Installing awscli now"
-    sudo apt install -y awscli s3cmd 
+    sudo snap install aws-cli
 }
 
 ask_install_awscli() {
